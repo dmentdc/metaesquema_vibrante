@@ -26,11 +26,20 @@ function setup() {
   encendido = false
 }
 
+function draw_ex(){
+  if (keyIsPressed === true) {
+    fill(0);
+  } else {
+    fill(255);
+  }
+  rect(25, 25, 50, 50);
+}
+
 function draw() {
   background('red');
   fill('red');
   stroke('white');
-	strokeWeight(16);
+  strokeWeight(16);
   //randomSeed(1);
   
   //
@@ -40,14 +49,16 @@ function draw() {
   1.0 la idea es que cada vez que se haga click, cambie de dimensión
   2.0 la idea es que el cambio de dimensión sea intercalado
   3.0 se agranda, y cuando voy a apagar, queda en un estado de shock
-  4.0 
+  1.1 aca se pone seria la cosa, y cuando presione una tecla, va realizar la transformación
+  
    if(rWidth > 200){
           uno = uno * -1;
         
         }
   */
-  if(mouseIsPressed){
-     
+  //cambio mouseIsPressed por 
+  if(keyIsPressed  === true){
+     console.log("tengo que estar presionado? " + keyIsPressed)
     if(encendido){
       console.log("acaso estoy pasando por aqui?, creo sí");
       //
@@ -61,33 +72,23 @@ function draw() {
       rHeigth = rHeigth - uno;
       encendido = true;
     }
-    	
+      
       }
   else{
+    console.log("que mierda esta presionada??" + keyIsPressed);
     console.log('es el momento para decirte que haz estado perdiendo el tiempo, todo este tiempo');
     me_agrando();
   }
   console.log("digame cuanto es encendido=" + encendido)
   
   for(var i=0;i<4;i++){
-    //rect(0, 0, rWidth*1.9, rHeigth*1.3);
-    //if(i%2==0){
-    console.log(mouseX);
+
     rect(0, 0, rWidth*1.8, rHeigth*1.1);
-      	rect(rWidth*1.8, 0, rWidth*0.9, rHeigth*1.2);
-    		rect(rWidth*1.8, rHeigth*1.2, rWidth*0.4, height/2- rHeigth*1.2);
-      	rect(rWidth*1.8 + rWidth*0.9, 0, rWidth*0.67, rHeigth*1.8);
+        rect(rWidth*1.8, 0, rWidth*0.9, rHeigth*1.2);
+        rect(rWidth*1.8, rHeigth*1.2, rWidth*0.4, height/2- rHeigth*1.2);
+        rect(rWidth*1.8 + rWidth*0.9, 0, rWidth*0.67, rHeigth*1.8);
       translate(width,0);
-  		rotate(HALF_PI);
-      
-    //}
-    /*else{
-      rect(0, 0, rWidth*2.1, rHeigth*1);
-      rect(rWidth*2.1, 0, rWidth*0.8, rHeigth*1.2);
-      rect(rWidth*2.1 + rWidth*0.8, 0, rWidth*0.8, rHeigth*2.1);
-      translate(height,0);
-  		rotate(HALF_PI);
-    }*/
+      rotate(HALF_PI);
     
   }
   function enciendoLaWea(){
@@ -96,9 +97,7 @@ function draw() {
   
   function me_agrando(){
     rWidth = rWidth - uno;
-  	rHeigth = rHeigth + uno;
-   // rWidth = rWidth + uno;
-   // rHeigth = rHeigth - uno;
+    rHeigth = rHeigth + uno;
     print("me agrando");
   }
  
