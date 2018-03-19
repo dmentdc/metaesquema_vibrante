@@ -6,40 +6,33 @@ inspirado en 'Metaesquema', Hélio Oiticica, 1958
 
 
 
-y genero el ancho del cuadrado en un cuancho
-y al alto del cuadrado le nombro cualto
+y genero el ancho del cuadrado en un anchocu
+y al alto del cuadrado le nombro altocu por alto cu... 
 */
-var cuancho;
-var cualto;
+var anchocu;
+var altocu;
 var uno;
 var contero; 
 var encendido;
+var stop;
+var hue;
 function setup() {
   createCanvas(690, 690);
-  //rWidth=width/2/3;
-  rWidth=150;
-  rHeigth=rWidth
+  anchocu=150;
+  altocu=anchocu
   rectMode(CORNER);
   frameRate(20);
   uno = -1;
   contero = 0;
   encendido = false
-}
-
-function draw_ex(){
-  if (keyIsPressed === true) {
-    fill(0);
-  } else {
-    fill(255);
-  }
-  rect(25, 25, 50, 50);
+  colorMode(HSB,100);
+  stop = false;
+  hue = 95;
 }
 
 function draw() {
-  background('red');
-  fill('red');
-  stroke('white');
-  strokeWeight(16);
+  creacion();
+  dibujar_la_obra();
   //randomSeed(1);
   
   //
@@ -50,55 +43,91 @@ function draw() {
   2.0 la idea es que el cambio de dimensión sea intercalado
   3.0 se agranda, y cuando voy a apagar, queda en un estado de shock
   1.1 aca se pone seria la cosa, y cuando presione una tecla, va realizar la transformación
+  1.2 luego de cambiar el estado, pesado, armado, rabioso aireado, con solo tocarlo, 
+      ahora agrado y achico el setimiendo de agrado.
+  1.3 en el camino del descubrimiento, el movimiento de los cuadrados fluye, 
+      también el color.
   
-   if(rWidth > 200){
-          uno = uno * -1;
-        
-        }
   */
-  //cambio mouseIsPressed por 
   if(keyIsPressed  === true){
-     console.log("tengo que estar presionado? " + keyIsPressed)
+    if(key === 'g'){
+      print("consuelo: - hola Guido");
+      cambia_el_color();
+    }
+     console.log("consuelo: - a mover el pavo");
+     encendido = muevemueve(encendido);       
+     stop = true;
+  }
+  else{
+    if(stop==true){
+      print("consuelo: - dance!");
+      if(encendido){
+        me_agrando();
+      }else{
+        me_achico();
+      }
+    }
+  }
+  console.log("digo la verdad? = " + encendido)
+  
+  
+  
+  function me_agrando(){
+    anchocu = anchocu - uno;
+    altocu = altocu + uno;
+    print("me agrando");
+  }
+  
+  function me_achico(){
+    anchocu = anchocu + uno;
+    altocu = altocu - uno;
+    print("me achico");
+  }
+  /*
+    aprendo a mover con el mueve mueve, se te mueve, 9 9, hueve hueve
+    treqe treqe, entre que te, se te mete el cete eme verde
+  */
+  
+  function muevemueve(encendido){
     if(encendido){
       console.log("acaso estoy pasando por aqui?, creo sí");
-      //
-        rWidth = rWidth - uno;
-        rHeigth = rHeigth + uno;
+      me_agrando();
       console.log("viejorecu: - Quíen mierda encendió esto, hay que apagar esta wea!");
       encendido = false;
     }else{
       console.log("si ves esto en el log, es por que estoy muerto. Enciendo la luz");
-      rWidth = rWidth + uno;
-      rHeigth = rHeigth - uno;
+      me_achico()
       encendido = true;
     }
-      
-      }
-  else{
-    console.log("que mierda esta presionada??" + keyIsPressed);
-    console.log('es el momento para decirte que haz estado perdiendo el tiempo, todo este tiempo');
-    me_agrando();
+    return encendido;
   }
-  console.log("digame cuanto es encendido=" + encendido)
   
-  for(var i=0;i<4;i++){
+  function dibujar_la_obra(){
+    print("dibujante misterioso: - me gusta el dibujo!");
+    for(var i=0;i<4;i++){
 
-    rect(0, 0, rWidth*1.8, rHeigth*1.1);
-        rect(rWidth*1.8, 0, rWidth*0.9, rHeigth*1.2);
-        rect(rWidth*1.8, rHeigth*1.2, rWidth*0.4, height/2- rHeigth*1.2);
-        rect(rWidth*1.8 + rWidth*0.9, 0, rWidth*0.67, rHeigth*1.8);
-      translate(width,0);
-      rotate(HALF_PI);
+    rect(0, 0, anchocu*1.8, altocu*1.1);
+    rect(anchocu*1.8, 0, anchocu*0.9, altocu*1.2);
+    rect(anchocu*1.8, altocu*1.2, anchocu*0.4, height/2- altocu*1.2);
+    rect(anchocu*1.8 + anchocu*0.9, 0, anchocu*0.67, altocu*1.8);
+    translate(width,0);
+    rotate(HALF_PI);
     
   }
-  function enciendoLaWea(){
-    
   }
   
-  function me_agrando(){
-    rWidth = rWidth - uno;
-    rHeigth = rHeigth + uno;
-    print("me agrando");
+  function creacion(){
+    //el color original de la obra en HSB: 95 = hue, 100 = saturation, 60 =brillo
+    background(hue, 100, 60);
+    fill(hue, 100, 60);
+    stroke('white');
+    strokeWeight(16);
+  }
+  
+  function cambia_el_color(){
+    var r = random(0,350);
+    hue = r;
+  
   }
  
 }
