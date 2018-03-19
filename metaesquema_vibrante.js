@@ -31,8 +31,9 @@ function setup() {
 }
 
 function draw() {
-  creacion();
-  dibujar_la_obra();
+  pintalo();
+  dibujalo();
+  
   //randomSeed(1);
   
   //
@@ -102,7 +103,7 @@ function draw() {
     return encendido;
   }
   
-  function dibujar_la_obra(){
+  function dibujalo(){
     print("dibujante misterioso: - me gusta el dibujo!");
     for(var i=0;i<4;i++){
 
@@ -116,7 +117,7 @@ function draw() {
   }
   }
   
-  function creacion(){
+  function pintalo(){
     //el color original de la obra en HSB: 95 = hue, 100 = saturation, 60 =brillo
     background(hue, 100, 60);
     fill(hue, 100, 60);
